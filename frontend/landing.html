@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Oniromancer — Dream Intelligence Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{background:#07060f;color:#cfc8e8;font-family:'Spectral',Georgia,serif;overflow-x:hidden;}
+#cv{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.neb{position:fixed;z-index:0;pointer-events:none;border-radius:50%;filter:blur(110px);animation:nd 26s ease-in-out infinite alternate;}
+.neb-a{width:800px;height:800px;top:-300px;left:-200px;background:radial-gradient(circle,rgba(80,45,160,.22),transparent 68%);}
+.neb-b{width:600px;height:600px;bottom:-200px;right:-150px;background:radial-gradient(circle,rgba(140,40,80,.15),transparent 68%);animation-delay:-13s;}
+.neb-c{width:500px;height:500px;top:40%;left:40%;background:radial-gradient(circle,rgba(30,60,120,.12),transparent 68%);animation-delay:-6s;}
+@keyframes nd{to{transform:translate(50px,40px) scale(1.1);}}
+/* LAYOUT */
+#page{position:relative;z-index:5;}
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;position:sticky;top:0;z-index:100;background:rgba(7,6,15,.7);backdrop-filter:blur(12px);border-bottom:1px solid rgba(155,130,230,.08);}
+.nav-logo{font-family:'IM Fell English',serif;font-style:italic;font-size:1.2rem;color:#cfc8e8;display:flex;align-items:center;gap:10px;}
+.nav-moon{color:#8b6fd4;font-size:1.4rem;filter:drop-shadow(0 0 10px rgba(139,111,212,.5));}
+.nav-links{display:flex;gap:6px;}
+.nav-btn{padding:8px 20px;border-radius:8px;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .2s;cursor:pointer;}
+.nav-btn-ghost{background:transparent;border:1px solid rgba(155,130,230,.25);color:#6a6082;}
+.nav-btn-ghost:hover{border-color:#8b6fd4;color:#cfc8e8;}
+.nav-btn-solid{background:linear-gradient(135deg,#8b6fd4,#6040b0);border:none;color:white;box-shadow:0 4px 20px rgba(139,111,212,.3);}
+.nav-btn-solid:hover{box-shadow:0 6px 28px rgba(139,111,212,.5);transform:translateY(-1px);}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;}
+.hero-glyph{font-size:5rem;line-height:1;color:#8b6fd4;filter:drop-shadow(0 0 40px rgba(139,111,212,.6));animation:breathe 5s ease-in-out infinite;margin-bottom:24px;}
+@keyframes breathe{0%,100%{opacity:.65;transform:scale(1) translateY(0);}50%{opacity:1;transform:scale(1.08) translateY(-6px);}}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:#6a6082;margin-bottom:16px;}
+.hero-title{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(2.8rem,7vw,5rem);line-height:1.1;color:#cfc8e8;margin-bottom:16px;text-shadow:0 0 60px rgba(139,111,212,.2);}
+.hero-title span{color:#8b6fd4;}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);font-weight:300;font-style:italic;color:#6a6082;max-width:560px;line-height:1.8;margin-bottom:40px;}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.cta-primary{padding:14px 32px;background:linear-gradient(135deg,#8b6fd4,#6040b0);border:none;border-radius:10px;color:white;font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;box-shadow:0 6px 30px rgba(139,111,212,.4);transition:all .2s;}
+.cta-primary:hover{box-shadow:0 8px 40px rgba(139,111,212,.65);transform:translateY(-2px);}
+.cta-secondary{padding:14px 32px;background:transparent;border:1px solid rgba(155,130,230,.3);border-radius:10px;color:#8b6fd4;font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .2s;}
+.cta-secondary:hover{border-color:#8b6fd4;background:rgba(139,111,212,.08);}
+.hero-moon{margin-top:48px;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:#3a3254;display:flex;align-items:center;gap:8px;}
+/* FEATURES STRIP */
+.features{padding:100px 24px;max-width:1100px;margin:0 auto;}
+.feat-eyebrow{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:#6a6082;text-align:center;margin-bottom:14px;}
+.feat-title{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(1.8rem,4vw,2.8rem);text-align:center;color:#cfc8e8;margin-bottom:60px;line-height:1.2;}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.feat-card{background:rgba(13,11,26,.8);border:1px solid rgba(155,130,230,.1);border-radius:14px;padding:28px 24px;transition:border-color .2s,transform .2s;}
+.feat-card:hover{border-color:rgba(139,111,212,.35);transform:translateY(-4px);}
+.feat-icon{font-size:1.8rem;margin-bottom:14px;display:block;}
+.feat-name{font-family:'IM Fell English',serif;font-style:italic;font-size:1.15rem;color:#cfc8e8;margin-bottom:8px;}
+.feat-desc{font-size:.88rem;font-weight:300;line-height:1.72;color:#6a6082;}
+/* TRADITION STRIP */
+.traditions{background:rgba(13,11,26,.6);border-top:1px solid rgba(155,130,230,.07);border-bottom:1px solid rgba(155,130,230,.07);padding:70px 24px;text-align:center;}
+.trad-inner{max-width:800px;margin:0 auto;}
+.trad-title{font-family:'IM Fell English',serif;font-style:italic;font-size:1.8rem;color:#cfc8e8;margin-bottom:12px;}
+.trad-sub{font-size:.95rem;font-style:italic;color:#6a6082;line-height:1.8;margin-bottom:36px;}
+.trad-pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.tpill{padding:8px 18px;border-radius:20px;border:1px solid;font-size:.8rem;font-family:'Space Mono',monospace;letter-spacing:.08em;}
+.tp-a{border-color:#8b6fd4;color:#8b6fd4;background:rgba(139,111,212,.08);}
+.tp-b{border-color:#c09040;color:#c09040;background:rgba(192,144,64,.08);}
+.tp-c{border-color:#4ab0a8;color:#4ab0a8;background:rgba(74,176,168,.08);}
+.tp-d{border-color:#c05080;color:#c05080;background:rgba(192,80,128,.08);}
+.tp-e{border-color:#6080d0;color:#6080d0;background:rgba(96,128,208,.08);}
+.tp-f{border-color:#a080c0;color:#a080c0;background:rgba(160,128,192,.08);}
+/* LANG STRIP */
+.langs{padding:70px 24px;max-width:900px;margin:0 auto;text-align:center;}
+.langs-title{font-family:'IM Fell English',serif;font-style:italic;font-size:1.8rem;color:#cfc8e8;margin-bottom:12px;}
+.langs-sub{font-size:.9rem;font-style:italic;color:#6a6082;margin-bottom:32px;}
+.lang-cards{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.lcard{padding:16px 22px;background:rgba(13,11,26,.8);border:1px solid rgba(155,130,230,.12);border-radius:12px;min-width:120px;transition:border-color .2s;}
+.lcard:hover{border-color:rgba(139,111,212,.4);}
+.lcard-flag{font-size:1.6rem;display:block;margin-bottom:6px;}
+.lcard-name{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#6a6082;}
+/* CTA SECTION */
+.cta-section{padding:100px 24px;text-align:center;}
+.cta-title{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(2rem,5vw,3.2rem);color:#cfc8e8;margin-bottom:14px;}
+.cta-sub{font-size:1rem;font-style:italic;color:#6a6082;margin-bottom:36px;}
+/* FOOTER */
+footer{padding:28px 48px;border-top:1px solid rgba(155,130,230,.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-left{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;color:#3a3254;}
+.footer-right{font-size:.8rem;font-style:italic;color:#3a3254;}
+@media(max-width:600px){nav{padding:14px 20px;}.hero{padding:60px 16px 40px;}.features,.langs,.cta-section{padding:60px 16px;}footer{padding:20px;flex-direction:column;text-align:center;}}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<div class="neb neb-a"></div><div class="neb neb-b"></div><div class="neb neb-c"></div>
+
+<div id="page">
+<nav>
+  <div class="nav-logo"><span class="nav-moon">☽</span>Oniromancer</div>
+  <div class="nav-links">
+    <a href="/dashboard" class="nav-btn nav-btn-ghost">Dashboard</a>
+    <a href="/app" class="nav-btn nav-btn-solid">Begin Session</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glyph">☽</div>
+  <div class="hero-eyebrow">AI Dream Intelligence Platform</div>
+  <h1 class="hero-title">Your dreams are<br><span>trying to tell you</span><br>something.</h1>
+  <p class="hero-sub">Oniromancer is a multilingual AI dream interpreter that synthesises depth psychology, Islamic tradition, mythology, and neuroscience — building a living map of your unconscious over time.</p>
+  <div class="hero-cta">
+    <a href="/app" class="cta-primary">Begin Interpreting</a>
+    <a href="/dashboard" class="cta-secondary">View Dashboard</a>
+  </div>
+  <div class="hero-moon" id="hero-moon">☽ Loading moon phase…</div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="feat-eyebrow">Platform Capabilities</div>
+  <h2 class="feat-title">Everything your unconscious deserves.</h2>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <span class="feat-icon">🔮</span>
+      <div class="feat-name">Deep Interpretation</div>
+      <p class="feat-desc">Layered analysis using llama-3.3-70b-versatile with 10,000+ dream symbols, psychoanalytic theory, and Islamic tradition — all woven into flowing prose.</p>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">🗺</span>
+      <div class="feat-name">Unconscious Mapping</div>
+      <p class="feat-desc">Analyse all dreams in a session together. Surface recurring archetypes, shadow material, dominant symbols, and the emotional signature beneath it all.</p>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">📊</span>
+      <div class="feat-name">Analytics Dashboard</div>
+      <p class="feat-desc">Visual charts of your dream types, emotion frequencies, symbol recurrences, and lunar correlations — your unconscious landscape made visible.</p>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">✦</span>
+      <div class="feat-name">Symbol Oracle</div>
+      <p class="feat-desc">Type any single image — serpent, tower, water, mirror — and receive a dense cross-traditional reading: mythology, psychology, alchemy, and Sufi symbolism.</p>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">📄</span>
+      <div class="feat-name">PDF Unconscious Report</div>
+      <p class="feat-desc">Generate a full personal intelligence report — AI narrative, dream analytics, symbol tables, and your complete dream record — exported as a beautiful PDF.</p>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">🎙</span>
+      <div class="feat-name">Voice Input</div>
+      <p class="feat-desc">Speak your dream the moment you wake. Groq Whisper transcribes it instantly, detects your language, and sends it directly for interpretation.</p>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">☽</span>
+      <div class="feat-name">Lunar Intelligence</div>
+      <p class="feat-desc">Real-time moon phase calculated from pure astronomy math. The phase is woven into every interpretation — many traditions hold it shapes dream quality.</p>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">📖</span>
+      <div class="feat-name">Dream Journal</div>
+      <p class="feat-desc">Transform any dream + interpretation into a beautiful literary journal entry — the kind you'll want to read years from now. Copy or save to PDF.</p>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">🔄</span>
+      <div class="feat-name">Cross-Session Patterns</div>
+      <p class="feat-desc">Finds hidden recurrences across multiple sessions — the same symbol in three different dreams, the same emotion at critical moments — surfaces what you cannot see yourself.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRADITIONS -->
+<section class="traditions">
+  <div class="trad-inner">
+    <h2 class="trad-title">Six traditions. One interpretation.</h2>
+    <p class="trad-sub">Every response synthesises multiple schools of thought simultaneously — never just one lens, never a generic answer.</p>
+    <div class="trad-pills">
+      <span class="tpill tp-a">Jungian Depth Psychology</span>
+      <span class="tpill tp-b">Islamic Tradition · Ibn Sirine</span>
+      <span class="tpill tp-c">Freudian Psychoanalysis</span>
+      <span class="tpill tp-d">Greek & Egyptian Mythology</span>
+      <span class="tpill tp-e">Kabbalah & Alchemy</span>
+      <span class="tpill tp-f">Sufi Symbolism</span>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="langs">
+  <h2 class="langs-title">One platform. Four languages.</h2>
+  <p class="langs-sub">Write or speak in any of these — including Tunisian Darija with phonetic numerals.</p>
+  <div class="lang-cards">
+    <div class="lcard"><span class="lcard-flag">🇬🇧</span><span class="lcard-name">English</span></div>
+    <div class="lcard"><span class="lcard-flag">🇫🇷</span><span class="lcard-name">Français</span></div>
+    <div class="lcard"><span class="lcard-flag">🇸🇦</span><span class="lcard-name">العربية</span></div>
+    <div class="lcard"><span class="lcard-flag">🇹🇳</span><span class="lcard-name">درجة تونسية</span></div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <h2 class="cta-title">What did you dream last night?</h2>
+  <p class="cta-sub">Begin your first session. Every detail is a door.</p>
+  <a href="/app" class="cta-primary">Start Interpreting — Free</a>
+</section>
+
+<footer>
+  <div class="footer-left">☽ Oniromancer · Dream Intelligence Platform · All services free</div>
+  <div class="footer-right">Built with Groq · LangChain · ChromaDB · FastAPI</div>
+</footer>
+</div>
+
+<script>
+// particles
+(function(){
+  const cv=document.getElementById('cv'),cx=cv.getContext('2d');let W,H,pts=[];
+  function init(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;pts=Array.from({length:110},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.2,vx:(Math.random()-.5)*.08,vy:(Math.random()-.5)*.07,a:Math.random()*.7+.15,ph:Math.random()*Math.PI*2,sp:Math.random()*.4+.15}));}
+  function draw(t){cx.clearRect(0,0,W,H);pts.forEach(p=>{p.x=(p.x+p.vx+W)%W;p.y=(p.y+p.vy+H)%H;const a=p.a*(.3+.7*Math.sin(t*.0005*p.sp+p.ph));cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);cx.fillStyle=`rgba(165,150,225,${a})`;cx.fill();});requestAnimationFrame(draw);}
+  window.addEventListener('resize',init);init();requestAnimationFrame(draw);
+})();
+// load moon
+fetch('http://localhost:8000/api/lunar').then(r=>r.json()).then(d=>{
+  document.getElementById('hero-moon').textContent=`${d.emoji} Tonight: ${d.phase} · ${d.illumination_pct}% illuminated`;
+}).catch(()=>{document.getElementById('hero-moon').textContent='';});
+</script>
+</body>
+</html>
