@@ -1,0 +1,29 @@
+# ── Web framework ─────────────────────────────────────────────
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+python-multipart==0.0.19
+python-dotenv==1.0.1
+pydantic==2.10.3
+
+# ── LLM + Voice — Groq free tier (no credit card) ────────────
+#   llama-3.3-70b-versatile  → interpretation & analysis
+#   whisper-large-v3         → voice transcription
+#   Sign up FREE: https://console.groq.com
+groq==0.13.0
+
+# ── Vector store + multilingual embeddings (100% local) ───────
+chromadb==0.6.3
+langchain==0.3.18
+langchain-community==0.3.17
+langchain-huggingface==0.1.2
+sentence-transformers==3.3.1
+
+# ── PDF extraction ────────────────────────────────────────────
+pypdf==5.1.0
+pdfminer.six==20231228
+
+# ── PDF report generation ─────────────────────────────────────
+reportlab==4.2.0
+
+# ── Data ──────────────────────────────────────────────────────
+pandas==2.2.3
